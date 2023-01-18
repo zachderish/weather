@@ -1,0 +1,12 @@
+label {
+    margin-right: 50px;
+}
+
+li {
+    margin-top: 5px;
+    list-style: none;
+}
+
+ul {
+    width: 300px
+}
