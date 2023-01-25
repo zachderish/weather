@@ -1,16 +1,22 @@
 // create button element
 const getForecast = document.getElementById("get-forecast")
 // create entry element
-let coor = document.getElementById("location")
+let zip = document.getElementById("location")
 // create forecast list element
 let forecast = document.getElementById("forecast-el")
 
 // "listen" for button to be clicked
 getForecast.addEventListener("click", function() {
-    console.log(coor.value)
-    let coorSplit = coor.value.split(",") 
+    // console.log(coor.value)
+    // let coorSplit = coor.value.split(",") 
 
     // call weather api given latitude and longitude
+    let coorlink = `http://api.openweathermap.org/geo/1.0/zip?zip=${zip.value},US&appid=//`
+    let coor = ''
+    fetch(coorlink)
+        .then(res => res.json())
+        // get data from json
+        .then(data => getLocation(data))
     let link = `https://api.weather.gov/points/${coorSplit[0]},${coorSplit[1]}`
     console.log(link)
     fetch(link)
@@ -18,6 +24,9 @@ getForecast.addEventListener("click", function() {
             // get data from json
             .then(data => locationForecast(data))
 })
+
+// get location based on coordinates
+
 
 // get forecast from json
 function locationForecast(location) {
