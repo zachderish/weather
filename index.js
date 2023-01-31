@@ -3,13 +3,16 @@ const getForecast = document.getElementById("get-forecast")
 // create entry element
 let zip = document.getElementById("location")
 // create forecast list element
-let forecast = document.getElementById("forecast-el")
+let forecast = document.getElementById("forecast-name")
+
+// get table element
+let table = document.getElementById("table")
 
 // "listen" for button to be clicked
 getForecast.addEventListener("click", function() {
     // console.log(coor.value)
     // let coorSplit = coor.value.split(",") 
-    forecast.innerText = ""
+    table.innerText = ""
     // call weather api given latitude and longitude
     let coorlink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip.value},US&appid=f8bd836d48cae527758b009597acbc65`
     fetch(coorlink)
@@ -44,12 +47,63 @@ function locationForecast(location) {
     .then(data => renderForecast(data.properties))
 }
 
-// render forecast to html
+// render forecast table to html
 function renderForecast(element) {
-    for(let i = 0; i < 14; i++){
-        let li = document.createElement("li")
-        let forecastItem = `${element.periods[i].name}: ${element.periods[i].detailedForecast}`
-        li.innerText = forecastItem
-        forecast.appendChild(li)
+    // create table header
+    let row = table.insertRow(0)
+    headers = ["Day", "High", "Low", "Precipitation"]
+
+    // create header row
+    for(let i = 0; i < headers.length; i++){
+        let header = document.createElement("th")
+        header.innerHTML = headers[i]
+        row.appendChild(header)
+    }
+
+    // create table data
+    // if only one period left in day
+    if(element.periods[0].isDaytime == false){
+        // 
+        let row = table.insertRow(1)
+        let td1 = row.insertCell(0)
+        td1.innerHTML = element.periods[0].name
+        let td2 = row.insertCell(1)
+        td2.innerHTML = "--"
+        let td3 = row.insertCell(2)
+        td3.innerHTML = element.periods[0].temperature + "°F"
+        let td4 = row.insertCell(3)
+        td4.innerHTML = element.periods[0].shortForecast
+
+        
+        // get remaining period
+        let rowCounter = 2
+        for(let i = 2; i < 14; i=i+2){
+            let row = table.insertRow(rowCounter)
+            let td1 = row.insertCell(0)
+            td1.innerHTML = element.periods[i-1].name
+            let td2 = row.insertCell(1)
+            td2.innerHTML = element.periods[i-1].temperature + "°F"
+            let td3 = row.insertCell(2)
+            td3.innerHTML = element.periods[i].temperature + "°F"
+            rowCounter+=1
+            let td4 = row.insertCell(3)
+            td4.innerHTML = element.periods[i].shortForecast
+        }
+
+    }
+    else{
+        let rowCounter = 1
+        for(let i = 0; i < 14; i=i+2){
+            let row = table.insertRow(rowCounter)
+            let td1 = row.insertCell(0)
+            td1.innerHTML = element.periods[i].name
+            let td2 = row.insertCell(1)
+            td2.innerHTML = element.periods[i].temperature + "°F"
+            let td3 = row.insertCell(2)
+            td3.innerHTML = element.periods[i+1].temperature + "°F"
+            rowCounter+=1
+            let td4 = row.insertCell(3)
+            td4.innerHTML = element.periods[i].shortForecast
+        }
     }
 }

@@ -10,3 +10,21 @@ li {
 ul {
     width: 300px
 }
+
+table {
+    font: 14px/1.25 "Helvetica Neue",helvetica,arial,sans-serif;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    background: #dddddd;
+    padding: 4px 3px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: right;
+    padding: 4px 3px;
+}
