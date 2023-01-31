@@ -11,7 +11,7 @@ getForecast.addEventListener("click", function() {
     // let coorSplit = coor.value.split(",") 
     forecast.innerText = ""
     // call weather api given latitude and longitude
-    let coorlink = `http://api.openweathermap.org/geo/1.0/zip?zip=${zip.value},US&appid=f8bd836d48cae527758b009597acbc65`
+    let coorlink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip.value},US&appid=f8bd836d48cae527758b009597acbc65`
     fetch(coorlink)
         .then(res => res.json())
         // get location data from json
