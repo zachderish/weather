@@ -1,4 +1,4 @@
 # weather
 - calls weather service API
 - renders forecast
-- try at:
+- try at: https://zachderish.github.io/weather/
