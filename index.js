@@ -10,9 +10,8 @@ let table = document.getElementById("table")
 
 // "listen" for button to be clicked
 getForecast.addEventListener("click", function() {
-    // console.log(coor.value)
-    // let coorSplit = coor.value.split(",") 
     table.innerText = ""
+    forecast.innerText = ""
     // call weather api given latitude and longitude
     let coorlink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip.value},US&appid=f8bd836d48cae527758b009597acbc65`
     fetch(coorlink)
@@ -20,6 +19,18 @@ getForecast.addEventListener("click", function() {
         // get location data from json
         .then(data => getLocation(data))
 })
+
+// Execute a function when the user presses a key on the keyboard
+zip.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("get-forecast").click();
+    }
+  });
+
 
 // get location based on coordinates from geocoding API
 function getLocation(coor){
