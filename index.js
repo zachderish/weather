@@ -62,7 +62,7 @@ function locationForecast(location) {
 function renderForecast(element) {
     // create table header
     let row = table.insertRow(0)
-    headers = ["Day", "High", "Low", "Precipitation"]
+    headers = ["Day", "High", "Low", "Precipitation", ""]
 
     // create header row
     for(let i = 0; i < headers.length; i++){
@@ -84,6 +84,10 @@ function renderForecast(element) {
         td3.innerHTML = element.periods[0].temperature + "°F"
         let td4 = row.insertCell(3)
         td4.innerHTML = element.periods[0].shortForecast
+        let td5 = row.insertCell(4)
+        let img = document.createElement("img")
+        img.src = element.periods[0].icon
+        td5.appendChild(img)
 
         
         // get remaining period
@@ -99,6 +103,10 @@ function renderForecast(element) {
             rowCounter+=1
             let td4 = row.insertCell(3)
             td4.innerHTML = element.periods[i].shortForecast
+            let td5 = row.insertCell(4)
+            let img = document.createElement("img")
+            img.src = element.periods[i].icon
+            td5.appendChild(img)
         }
 
     }
@@ -115,6 +123,10 @@ function renderForecast(element) {
             rowCounter+=1
             let td4 = row.insertCell(3)
             td4.innerHTML = element.periods[i].shortForecast
+            let td5 = row.insertCell(4)
+            let img = document.createElement("img")
+            img.src = element.periods[i].icon
+            td5.appendChild(img)
         }
     }
 }
