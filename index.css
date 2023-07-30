@@ -3,12 +3,22 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 50px;
+    margin: 0px;
 }
 
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    background-color: #1F2937;
+    padding: 50px;
+    color: white;
+}
+
+button {
+    background-color: white;
+    color: #1F2937;
 }
 
 #forecast-name {
@@ -32,6 +42,8 @@ ul {
 table {
     font: 14px/1.25 "Helvetica Neue",helvetica,arial,sans-serif;
     border-collapse: collapse;
+    color: #1F2937;
+    background-color: white;
 }
 
 th {
