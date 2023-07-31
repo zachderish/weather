@@ -19,6 +19,7 @@ body {
 button {
     background-color: white;
     color: #1F2937;
+    font-weight: bold;
 }
 
 #forecast-name {
@@ -33,6 +34,7 @@ label {
 li {
     margin-top: 5px;
     list-style: none;
+    color: #1F2937;
 }
 
 ul {
@@ -47,14 +49,16 @@ table {
 }
 
 th {
-    border: 1px solid #dddddd;
+    border: 1px solid #1F2937;
     text-align: left;
-    background: #dddddd;
+    background: #1F2937;
     padding: 4px 3px;
+    color: white;
 }
 
 td {
-    border: 1px solid #dddddd;
+    border: 1px solid #1F2937;
     text-align: right;
     padding: 4px 3px;
+    color: #1F2937;
 }
