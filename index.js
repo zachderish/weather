@@ -74,7 +74,7 @@ function renderForecast(element) {
     // create table data
     // if only one period left in day
     if(element.periods[0].isDaytime == false){
-        // 
+        // create first row for first period
         let row = table.insertRow(1)
         let td1 = row.insertCell(0)
         td1.innerHTML = element.periods[0].name
@@ -90,7 +90,7 @@ function renderForecast(element) {
         td5.appendChild(img)
 
         
-        // get remaining period
+        // get remaining periods, inserts every other period from 2-14
         let rowCounter = 2
         for(let i = 2; i < 14; i=i+2){
             let row = table.insertRow(rowCounter)
@@ -111,6 +111,7 @@ function renderForecast(element) {
 
     }
     else{
+        // insert every other period 0-14
         let rowCounter = 1
         for(let i = 0; i < 14; i=i+2){
             let row = table.insertRow(rowCounter)
