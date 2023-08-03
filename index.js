@@ -72,7 +72,7 @@ function renderForecast(element) {
     }
 
     // create table data
-    // if only one period left in day
+    // if only one period left in day (night)
     if(element.periods[0].isDaytime == false){
         // create first row for first period
         let row = table.insertRow(1)
