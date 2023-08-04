@@ -6,7 +6,7 @@ let zipCode = document.getElementById("zipCode");
 let cityName = document.getElementById("city-name");
 
 // get table element
-let table = document.getElementById("table")
+let table = document.getElementById("table");
 
 // "listen" for button to be clicked
 getForecast.addEventListener("click", function() {
@@ -34,15 +34,15 @@ zipCode.addEventListener("keypress", function(event) {
 
 // get location based on coordinates from geocoding API
 function getLocation(coor){
-    console.log(coor, coor.lat, coor.lon)
+    console.log(coor, coor.lat, coor.lon);
     // display location name
     let name = document.createElement("li");
     name.innerText = coor.name + " Forecast:";
     cityName.appendChild(name);
 
     // create link to weather api
-    let link = `https://api.weather.gov/points/${coor.lat},${coor.lon}`
-    console.log(link)
+    let link = `https://api.weather.gov/points/${coor.lat},${coor.lon}`;
+    console.log(link);
     fetch(link)
         .then(res => res.json())
         // get data from json
