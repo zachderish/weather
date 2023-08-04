@@ -120,7 +120,7 @@ function renderForecast(element) {
         for(let i = 0; i < 14; i=i+2){
             let row = table.insertRow(rowCounter);
             let td1 = row.insertCell(0);
-            td1.innerHTML = element.periods[i].name;
+            td1.innerHTML = `<b>${element.periods[i].name}</b>`;
             let td2 = row.insertCell(1);
             td2.innerHTML = element.periods[i].temperature + "°F";
             let td3 = row.insertCell(2);
