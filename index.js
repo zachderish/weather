@@ -1,9 +1,9 @@
 // create button element
 const getForecast = document.getElementById("get-forecast");
 // create entry element
-let zip = document.getElementById("location");
+let zipCode = document.getElementById("zipCode");
 // create forecast list element
-let forecast = document.getElementById("forecast-name");
+let cityName = document.getElementById("city-name");
 
 // get table element
 let table = document.getElementById("table")
@@ -11,9 +11,9 @@ let table = document.getElementById("table")
 // "listen" for button to be clicked
 getForecast.addEventListener("click", function() {
     table.innerText = "";
-    forecast.innerText = "";
+    cityName.innerText = "";
     // call weather api given latitude and longitude
-    let coorlink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zip.value},US&appid=f8bd836d48cae527758b009597acbc65`;
+    let coorlink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode.value},US&appid=f8bd836d48cae527758b009597acbc65`;
     fetch(coorlink)
         .then(res => res.json())
         // get location data from json
@@ -21,7 +21,7 @@ getForecast.addEventListener("click", function() {
 })
 
 // Execute a function when the user presses a key on the keyboard
-zip.addEventListener("keypress", function(event) {
+zipCode.addEventListener("keypress", function(event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
         // Cancel the default action, if needed
@@ -38,7 +38,7 @@ function getLocation(coor){
     // display location name
     let name = document.createElement("li");
     name.innerText = coor.name + " Forecast:";
-    forecast.appendChild(name);
+    cityName.appendChild(name);
 
     // create link to weather api
     let link = `https://api.weather.gov/points/${coor.lat},${coor.lon}`
@@ -50,8 +50,8 @@ function getLocation(coor){
 }
 
 // get forecast from weather json
-function locationForecast(location) {
-    let url = location.properties.forecast;
+function locationForecast(cityName) {
+    let url = cityName.properties.forecast;
     console.log(url);
     fetch(url)
     .then(res => res.json())
