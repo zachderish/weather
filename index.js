@@ -13,8 +13,8 @@ getForecast.addEventListener("click", function() {
     table.innerText = "";
     cityName.innerText = "";
     // call weather api given latitude and longitude
-    let coorlink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode.value},US&appid=f8bd836d48cae527758b009597acbc65`;
-    fetch(coorlink)
+    let coorLink = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipCode.value},US&appid=f8bd836d48cae527758b009597acbc65`;
+    fetch(coorLink)
         .then(res => res.json())
         // get location data from json
         .then(data => getLocation(data))
@@ -76,64 +76,64 @@ function renderForecast(element) {
     if(element.periods[0].isDaytime == false){
         // create first row for first period
         let row = table.insertRow(1);
-        let td1 = row.insertCell(0);
-        td1.innerHTML = element.periods[0].name;
-        let td2 = row.insertCell(1);
-        td2.innerHTML = "--";
-        let td3 = row.insertCell(2);
-        td3.innerHTML = element.periods[0].temperature + "°F";
-        let td4 = row.insertCell(3);
-        td4.innerHTML = element.periods[0].windSpeed + " " + element.periods[0].windDirection;
-        let td5 = row.insertCell(4);
-        td5.innerHTML = element.periods[0].shortForecast;
-        let td6 = row.insertCell(5);
+        let day = row.insertCell(0);
+        day.innerHTML = element.periods[0].name;
+        let high = row.insertCell(1);
+        high.innerHTML = "--";
+        let low = row.insertCell(2);
+        low.innerHTML = element.periods[0].temperature + "°F";
+        let wind = row.insertCell(3);
+        wind.innerHTML = element.periods[0].windSpeed + " " + element.periods[0].windDirection;
+        let precipitation = row.insertCell(4);
+        precipitation.innerHTML = element.periods[0].shortForecast;
+        let precImg = row.insertCell(5);
         let img = document.createElement("img");
         img.src = element.periods[0].icon;
-        td6.appendChild(img);
+        precImg.appendChild(img);
 
         
         // get remaining periods, inserts every other period from 2-14
         let rowCounter = 2;
-        for(let i = 2; i < 14; i=i+2){
+        for(let i = 2; i < 14; i+=2){
             let row = table.insertRow(rowCounter);
-            let td1 = row.insertCell(0);
-            td1.innerHTML = element.periods[i-1].name;
-            let td2 = row.insertCell(1);
-            td2.innerHTML = element.periods[i-1].temperature + "°F";
-            let td3 = row.insertCell(2);
-            td3.innerHTML = element.periods[i].temperature + "°F";
+            let day = row.insertCell(0);
+            day.innerHTML = element.periods[i-1].name;
+            let high = row.insertCell(1);
+            high.innerHTML = element.periods[i-1].temperature + "°F";
+            let low = row.insertCell(2);
+            low.innerHTML = element.periods[i].temperature + "°F";
             rowCounter+=1;
-            let td4 = row.insertCell(3);
-            td4.innerHTML = element.periods[i].windSpeed + " " + element.periods[i].windDirection;
-            let td5 = row.insertCell(4);
-            td5.innerHTML = element.periods[i].shortForecast;
-            let td6 = row.insertCell(5);
+            let wind = row.insertCell(3);
+            wind.innerHTML = element.periods[i].windSpeed + " " + element.periods[i].windDirection;
+            let precipitation = row.insertCell(4);
+            precipitation.innerHTML = element.periods[i].shortForecast;
+            let precImg = row.insertCell(5);
             let img = document.createElement("img");
             img.src = element.periods[i].icon;
-            td6.appendChild(img);
+            precImg.appendChild(img);
         }
 
     }
     else{
         // insert every other period 0-14
         let rowCounter = 1;
-        for(let i = 0; i < 14; i=i+2){
+        for(let i = 0; i < 14; i+=2){
             let row = table.insertRow(rowCounter);
-            let td1 = row.insertCell(0);
-            td1.innerHTML = `<b>${element.periods[i].name}</b>`;
-            let td2 = row.insertCell(1);
-            td2.innerHTML = element.periods[i].temperature + "°F";
-            let td3 = row.insertCell(2);
-            td3.innerHTML = element.periods[i+1].temperature + "°F";
+            let day = row.insertCell(0);
+            day.innerHTML = `<b>${element.periods[i].name}</b>`;
+            let high = row.insertCell(1);
+            high.innerHTML = element.periods[i].temperature + "°F";
+            let low = row.insertCell(2);
+            low.innerHTML = element.periods[i+1].temperature + "°F";
             rowCounter+=1;
-            let td4 = row.insertCell(3);
-            td4.innerHTML = element.periods[i].windSpeed + " " + element.periods[i].windDirection;
-            let td5 = row.insertCell(4);
-            td5.innerHTML = element.periods[i].shortForecast;
-            let td6 = row.insertCell(5);
+            let wind = row.insertCell(3);
+            wind.innerHTML = element.periods[i].windSpeed + " " + element.periods[i].windDirection;
+            let precipitation = row.insertCell(4);
+            precipitation.innerHTML = element.periods[i].shortForecast;
+            let precImg = row.insertCell(5);
             let img = document.createElement("img");
             img.src = element.periods[i].icon;
-            td6.appendChild(img);
+            precImg.appendChild(img);
         }
     }
 }
