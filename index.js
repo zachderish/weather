@@ -8,7 +8,10 @@ let cityName = document.getElementById("city-name");
 // get table element
 let table = document.getElementById("table");
 
-// "listen" for button to be clicked
+// get dropdown element
+const tempScale = document.getElementById("temp-scale");
+
+// event listener for button to be clicked
 getForecast.addEventListener("click", function() {
     table.innerText = "";
     cityName.innerText = "";
@@ -18,7 +21,13 @@ getForecast.addEventListener("click", function() {
         .then(res => res.json())
         // get location data from json
         .then(data => getLocation(data))
-})
+});
+
+// event listener for drop down
+tempScale.addEventListener("change", function() {
+    console.log("temp scale change");
+});
+
 
 // Execute a function when the user presses a key on the keyboard
 zipCode.addEventListener("keypress", function(event) {
@@ -137,3 +146,4 @@ function renderForecast(element) {
         }
     }
 }
+
