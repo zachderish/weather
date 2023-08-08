@@ -26,6 +26,13 @@ getForecast.addEventListener("click", function() {
 // event listener for drop down
 tempScale.addEventListener("change", function() {
     console.log("temp scale change");
+    if(tempScale.value=="F"){
+        console.log("F selected");
+    }
+    else{
+        console.log("C selected");
+    }
+        
 });
 
 
