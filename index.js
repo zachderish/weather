@@ -27,7 +27,12 @@ getForecast.addEventListener("click", function() {
 tempScale.addEventListener("change", function() {
     console.log("temp scale change");
     if(tempScale.value=="F"){
-        console.log("F selected");
+        for(let i = 0; i < 7; i++){
+            console.log("F selected");
+            let getLow = document.getElementById("low" + i);
+            console.log(getLow);
+        }
+        
     }
     else{
         console.log("C selected");
@@ -98,6 +103,7 @@ function renderForecast(element) {
         high.innerHTML = "--";
         let low = row.insertCell(2);
         low.innerHTML = element.periods[0].temperature + "°F";
+        low.id = "low";
         let wind = row.insertCell(3);
         wind.innerHTML = element.periods[0].windSpeed + " " + element.periods[0].windDirection;
         let precipitation = row.insertCell(4);
@@ -140,6 +146,7 @@ function renderForecast(element) {
             let high = row.insertCell(1);
             high.innerHTML = element.periods[i].temperature + "°F";
             let low = row.insertCell(2);
+            low.id = "low";
             low.innerHTML = element.periods[i+1].temperature + "°F";
             rowCounter+=1;
             let wind = row.insertCell(3);

@@ -22,6 +22,10 @@ button {
     font-weight: bold;
 }
 
+option, select {
+    font-weight: bold;
+}
+
 #city-name {
     font-size: 50px;
     font-weight: bold;
