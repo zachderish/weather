@@ -26,16 +26,29 @@ getForecast.addEventListener("click", function() {
 // event listener for drop down
 tempScale.addEventListener("change", function() {
     console.log("temp scale change");
+    /* Change low temp values once table is generated */
     if(tempScale.value=="F"){
         for(let i = 0; i < 7; i++){
             console.log("F selected");
             let getLow = document.getElementById("low" + i);
             console.log(getLow);
+            // convert C temp to a number without "°C"
+            let prevTemp = Number(getLow.textContent.replace("°C",""));
+            // convert C temp to F temp with "°F"
+            getLow.innerHTML = Math.round(((prevTemp*(9/5))+32))+"°F";
+            console.log(getLow);
         }
         
     }
     else{
-        console.log("C selected");
+        for(let i = 0; i < 7; i++){
+            console.log("C selected");
+            let getLow = document.getElementById("low" + i);
+            // convert F temp to a number without "°F"
+            let prevTemp = Number(getLow.textContent.replace("°F",""));
+            // convert F temp to C temp with "°C"
+            getLow.innerHTML = Math.round(((prevTemp-32)*(5/9)))+"°C";
+        }
     }
         
 });
@@ -103,7 +116,7 @@ function renderForecast(element) {
         high.innerHTML = "--";
         let low = row.insertCell(2);
         low.innerHTML = element.periods[0].temperature + "°F";
-        low.id = "low";
+        low.id = "low0";
         let wind = row.insertCell(3);
         wind.innerHTML = element.periods[0].windSpeed + " " + element.periods[0].windDirection;
         let precipitation = row.insertCell(4);
@@ -123,6 +136,7 @@ function renderForecast(element) {
             let high = row.insertCell(1);
             high.innerHTML = element.periods[i-1].temperature + "°F";
             let low = row.insertCell(2);
+            low.id = "low" + (rowCounter-1);
             low.innerHTML = element.periods[i].temperature + "°F";
             rowCounter+=1;
             let wind = row.insertCell(3);
