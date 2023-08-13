@@ -160,7 +160,7 @@ function renderForecast(element) {
             let high = row.insertCell(1);
             high.innerHTML = element.periods[i].temperature + "°F";
             let low = row.insertCell(2);
-            low.id = "low";
+            low.id = "low" + (rowCounter-1);
             low.innerHTML = element.periods[i+1].temperature + "°F";
             rowCounter+=1;
             let wind = row.insertCell(3);
