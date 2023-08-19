@@ -31,12 +31,13 @@ tempScale.addEventListener("change", function() {
         for(let i = 0; i < 7; i++){
             console.log("F selected");
             let getLow = document.getElementById("low" + i);
-            console.log(getLow);
+            let getHigh = document.getElementById("high" + i);
             // convert C temp to a number without "°C"
-            let prevTemp = Number(getLow.textContent.replace("°C",""));
+            let prevLow = Number(getLow.textContent.replace("°C",""));
+            let prevHigh = Number(getHigh.textContent.replace("°C",""));
             // convert C temp to F temp with "°F"
-            getLow.innerHTML = Math.round(((prevTemp*(9/5))+32))+"°F";
-            console.log(getLow);
+            getLow.innerHTML = Math.round(((prevLow*(9/5))+32))+"°F";
+            getHigh.innerHTML = Math.round(((prevHigh*(9/5))+32))+"°F";
         }
         
     }
@@ -44,10 +45,13 @@ tempScale.addEventListener("change", function() {
         for(let i = 0; i < 7; i++){
             console.log("C selected");
             let getLow = document.getElementById("low" + i);
+            let getHigh = document.getElementById("high" + i);
             // convert F temp to a number without "°F"
-            let prevTemp = Number(getLow.textContent.replace("°F",""));
+            let prevLow = Number(getLow.textContent.replace("°F",""));
+            let prevHigh = Number(getHigh.textContent.replace("°F",""));
             // convert F temp to C temp with "°C"
-            getLow.innerHTML = Math.round(((prevTemp-32)*(5/9)))+"°C";
+            getLow.innerHTML = Math.round(((prevLow-32)*(5/9)))+"°C";
+            getHigh.innerHTML = Math.round(((prevHigh-32)*(5/9)))+"°C";
         }
     }
         
@@ -114,6 +118,7 @@ function renderForecast(element) {
         day.innerHTML = element.periods[0].name;
         let high = row.insertCell(1);
         high.innerHTML = "--";
+        high.id = "high0";
         let low = row.insertCell(2);
         low.innerHTML = element.periods[0].temperature + "°F";
         low.id = "low0";
@@ -134,6 +139,7 @@ function renderForecast(element) {
             let day = row.insertCell(0);
             day.innerHTML = element.periods[i-1].name;
             let high = row.insertCell(1);
+            high.id = "high" + (rowCounter-1);
             high.innerHTML = element.periods[i-1].temperature + "°F";
             let low = row.insertCell(2);
             low.id = "low" + (rowCounter-1);
@@ -158,6 +164,7 @@ function renderForecast(element) {
             let day = row.insertCell(0);
             day.innerHTML = `<b>${element.periods[i].name}</b>`;
             let high = row.insertCell(1);
+            high.id = "high" + (rowCounter-1);
             high.innerHTML = element.periods[i].temperature + "°F";
             let low = row.insertCell(2);
             low.id = "low" + (rowCounter-1);
