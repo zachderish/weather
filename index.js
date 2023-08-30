@@ -32,12 +32,14 @@ tempScale.addEventListener("change", function() {
             console.log("F selected");
             let getLow = document.getElementById("low" + i);
             let getHigh = document.getElementById("high" + i);
-            // convert C temp to a number without "°C"
+            // convert low C temp to a number without "°C"
             let prevLow = Number(getLow.textContent.replace("°C",""));
-            let prevHigh = Number(getHigh.textContent.replace("°C",""));
-            // convert C temp to F temp with "°F"
             getLow.innerHTML = Math.round(((prevLow*(9/5))+32))+"°F";
-            getHigh.innerHTML = Math.round(((prevHigh*(9/5))+32))+"°F";
+            // convert high C temp to F temp with "°F"
+            if (getHigh.textContent != "--"){
+                let prevHigh = Number(getHigh.textContent.replace("°C",""));
+                getHigh.innerHTML = Math.round(((prevHigh*(9/5))+32))+"°F";
+            }
         }
         
     }
@@ -46,12 +48,15 @@ tempScale.addEventListener("change", function() {
             console.log("C selected");
             let getLow = document.getElementById("low" + i);
             let getHigh = document.getElementById("high" + i);
-            // convert F temp to a number without "°F"
+            // convert low F temp to a number without "°F"
             let prevLow = Number(getLow.textContent.replace("°F",""));
-            let prevHigh = Number(getHigh.textContent.replace("°F",""));
-            // convert F temp to C temp with "°C"
             getLow.innerHTML = Math.round(((prevLow-32)*(5/9)))+"°C";
-            getHigh.innerHTML = Math.round(((prevHigh-32)*(5/9)))+"°C";
+            // convert high F temp to C temp with "°C"
+            if (getHigh.textContent != "--"){
+                let prevHigh = Number(getHigh.textContent.replace("°F",""));
+                getHigh.innerHTML = Math.round(((prevHigh-32)*(5/9)))+"°C";
+            }
+            
         }
     }
         
